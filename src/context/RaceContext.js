@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect, useMemo } from "react";
 
-// Function to fetch data, sort it and filter out items that are already passed the time.
+// Function to fetch data, sort it and filter out items that has already passed the start time.
 const fetchData = (setRaceDetails) => {
   fetch("https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=10")
     .then((res) => res.json())
@@ -24,15 +24,15 @@ export const RaceProvider = ({ children }) => {
   const value = useMemo(() => raceDetails, [raceDetails]);
 
   useEffect(() => {
-    // Initial sorted fetch of data from API.
+    // Initial sorted data from API.
     fetchData(setRaceDetails);
 
-    // Removal of race items which are already passed 1 minute of their start time.
+    // Removal of race items which are already passed their start time.
     const intervalId = setInterval(() => { 
       fetchData(setRaceDetails);
     }, 10000);
 
-    return () => clearInterval(intervalId); //This is important
+    return () => clearInterval(intervalId);
 
   }, []);
 
