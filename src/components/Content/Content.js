@@ -37,8 +37,8 @@ const Content = () => {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} style={{ textAlign: "center" }}>
         <Select
           value={category}
           onChange={handleChange}
@@ -50,7 +50,7 @@ const Content = () => {
           </MenuItem>
           {filteredCategories.map((item, index) => {
             return (
-              <MenuItem inputProps={{ "data-testid": "select-option" }} value={item.id} key={index}>{item.value}</MenuItem>
+              <MenuItem value={item.id} key={index}>{item.value}</MenuItem>
             )
           })}
         </Select>
