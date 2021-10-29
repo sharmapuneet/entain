@@ -43,13 +43,14 @@ const Content = () => {
           value={category}
           onChange={handleChange}
           displayEmpty
+          inputProps={{ "data-testid": "select" }}
         >
-          <MenuItem value="">
+          <MenuItem value="" data-testid="select-option">
             <em>All Categories</em>
           </MenuItem>
           {filteredCategories.map((item, index) => {
             return (
-              <MenuItem value={item.id} key={index}>{item.value}</MenuItem>
+              <MenuItem inputProps={{ "data-testid": "select-option" }} value={item.id} key={index}>{item.value}</MenuItem>
             )
           })}
         </Select>
